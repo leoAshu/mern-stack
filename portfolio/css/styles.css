@@ -30,3 +30,8 @@ h2, h3 {
     left: 300px;
     bottom: 300px;
 }
+
+.profile-img {
+    height: 150px;
+    width: 150px;
+}
