@@ -30,25 +30,3 @@ h2, h3 {
     left: 300px;
     bottom: 300px;
 }
-
-
-
-
-
-
-
-
-
-
-
-.middle-container {
-    background-color: #7475d8;
-    height: 200px;
-    width: 200px;
-}
-
-.bottom-container {
-    background-color: #f9e4e5;
-    height: 200px;
-    width: 200px;
-}
