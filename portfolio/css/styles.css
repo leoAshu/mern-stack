@@ -54,3 +54,28 @@ a {
 .pro {
     text-decoration: underline;
 }
+
+.skill-row {
+    width: 50%;
+    margin: 100px auto;
+    text-align: left;
+}
+
+.skill-img {
+    width: 15%;
+    border-radius: 100%;
+}
+
+.computer-img {
+    float: left;
+    margin-right: 30px;
+}
+
+.chilli-img {
+    float: right;
+    margin-left: 30px;
+
+}
+.skill-info {
+    line-height: 2;
+}
