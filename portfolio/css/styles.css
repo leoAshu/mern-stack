@@ -6,7 +6,6 @@ body {
 
 h1 {
     margin: 50px auto 0 auto;
-    /* line-height: 2; */
     font-size: 5.62rem;
     font-family: 'Sacramento', cursive;
     color: #66BFBF;
@@ -26,6 +25,15 @@ h3 {
 
 a {
     color: #11999E;
+}
+
+
+hr{
+    border-style: none;
+    border-top-style: dotted;
+    border-color: #EAF6F6;
+    border-width: 10px;
+    width: 5%;
 }
 
 .top-container {
@@ -76,6 +84,7 @@ a {
     margin-left: 30px;
 
 }
+
 .skill-info {
     line-height: 2;
 }
