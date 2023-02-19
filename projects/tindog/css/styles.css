@@ -8,9 +8,19 @@ h1 {
     line-height: 1.5;
 }
 
+h3 {
+    font-weight: bold;
+}
+
+p {
+    color: #8F8F8F;
+}
+
 .container-fluid {
     padding: 3% 15%;
 }
+
+/* Title */
 
 #title {
     color: #FFF;
@@ -51,4 +61,25 @@ h1 {
 .title-image {
     width: 60%;
     transform: rotate(25deg);
+}
+
+
+/* Features */
+
+#features {
+    padding: 7% 15%;
+}
+
+.feature-box {
+    text-align: center;
+    padding: 5%;
+}
+
+.icon {
+    color: #EF8172;
+    margin-bottom: 1rem;
+}
+
+.icon:hover {
+    color: #FF4C68;
 }
