@@ -65,18 +65,6 @@ p {
     right: 25%;
 }
 
-@media (max-width: 1028px) {
-
-    #title {
-        text-align: center;
-    }
-
-    .title-image {
-        position: static;
-        transform: rotate(0deg);
-    }
-}
-
 
 
 /* Features Section */
@@ -149,11 +137,17 @@ p {
 
 /* Call to Action Section */
 #cta {
-    text-align: center;
     color: #FFF;
     padding: 7% 15%;
     font-weight: 900;
+    text-align: center;
     background-color: #FF4C68;
+}
+
+.cta-heading {
+    font-weight: 900;
+    font-size: 3rem;
+    line-height: 1.5;
 }
 
 
@@ -162,9 +156,22 @@ p {
 #footer {
     padding: 7% 15%;
     text-align: center;
-    background-color: #FFF;
 }
 
-.footer-icon {
-    margin: 5px 5px 20px;
+.social-icon {
+    margin: 20px 10px;
+}
+
+
+/* Media Queries */
+@media (max-width: 1028px) {
+
+    #title {
+        text-align: center;
+    }
+
+    .title-image {
+        position: static;
+        transform: rotate(0deg);
+    }
 }
