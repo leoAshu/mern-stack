@@ -144,3 +144,27 @@ p {
 .pricing-column {
     padding: 3% 2%;
 }
+
+
+
+/* Call to Action Section */
+#cta {
+    text-align: center;
+    color: #FFF;
+    padding: 7% 15%;
+    font-weight: 900;
+    background-color: #FF4C68;
+}
+
+
+
+/* Footer Section */
+#footer {
+    padding: 7% 15%;
+    text-align: center;
+    background-color: #FFF;
+}
+
+.footer-icon {
+    margin: 5px 5px 20px;
+}
