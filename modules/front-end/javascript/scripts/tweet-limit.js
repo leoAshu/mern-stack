@@ -5,5 +5,5 @@ var tweetLimit = 140;
 
 // alert("You have written " + tweetCount + " characters. You have " + (tweetLimit - tweetCount) + " characters left.");
 
-var trimmedTweet = tweet.slice(0, tweetLimit+1);
+var trimmedTweet = tweet.slice(0, tweetLimit);
 alert(trimmedTweet);
