@@ -1,6 +1,9 @@
 var tweet = prompt("Compose your tweet.");
 
-var limit = 140;
-var tweetCount = tweet.length;
+var tweetLimit = 140;
+// var tweetCount = tweet.length;
 
-alert("You have written " + tweetCount + " characters. You have " + (limit - tweetCount) + " characters left.");
+// alert("You have written " + tweetCount + " characters. You have " + (tweetLimit - tweetCount) + " characters left.");
+
+var trimmedTweet = tweet.slice(0, tweetLimit+1);
+alert(trimmedTweet);
