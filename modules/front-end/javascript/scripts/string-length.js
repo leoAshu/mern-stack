@@ -1,6 +1,6 @@
-var message = prompt("Write your message.");
+var tweet = prompt("Compose your tweet.");
 
 var limit = 140;
-var count = message.length;
+var tweetCount = tweet.length;
 
-alert("You have written " + count + " characters. You have " + (limit - count) + " characters left.");
+alert("You have written " + tweetCount + " characters. You have " + (limit - tweetCount) + " characters left.");
