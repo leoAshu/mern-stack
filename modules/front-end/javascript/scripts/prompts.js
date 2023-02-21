@@ -1,3 +1,3 @@
-var myName = prompt("What is your name?");
+var yourName = prompt("What is your name?");
 
-document.getElementById("result").innerHTML += myName;
+document.getElementById("result").innerHTML += "Hello " + yourName + "!";
