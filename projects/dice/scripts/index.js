@@ -1,18 +1,19 @@
-var imagePath = "./images/";
+var randomDiceValue1 = Math.floor(Math.random() * 6) + 1;
+var randomDiceValue2 = Math.floor(Math.random() * 6) + 1;
+
+var diceImages = document.querySelectorAll("img");
+
+diceImages[0].setAttribute("src", "./images/dice" + randomDiceValue1 + ".png");
+diceImages[1].setAttribute("src", "./images/dice" + randomDiceValue2 + ".png");
 
 var heading = document.querySelector("h1");
-var images = document.querySelectorAll("img");
 
-var dice1 = Math.floor(Math.random() * 6) + 1;
-var dice2 = Math.floor(Math.random() * 6) + 1;
+if(randomDiceValue1 > randomDiceValue2) {
+    heading.textContent = "⛳Player 1 Wins!";
 
-if(dice1 > dice2) {
-    heading.textContent = "Player 1 Wins!";
-} else if(dice1 < dice2) {
-    heading.textContent = "Player 2 Wins!";
+} else if(randomDiceValue1 < randomDiceValue2) {
+    heading.textContent = "Player 2 Wins!⛳";
+
 } else {
     heading.textContent = "Draw!";
 }
-
-images[0].setAttribute("src", imagePath + "dice" + dice1 + ".png");
-images[1].setAttribute("src", imagePath + "dice" + dice2 + ".png");
