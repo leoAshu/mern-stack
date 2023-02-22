@@ -7,9 +7,9 @@ var dice1 = Math.floor(Math.random() * 6) + 1;
 var dice2 = Math.floor(Math.random() * 6) + 1;
 
 if(dice1 > dice2) {
-    heading.textContent = "Player1 Wins!";
+    heading.textContent = "Player 1 Wins!";
 } else if(dice1 < dice2) {
-    heading.textContent = "Player2 Wins!";
+    heading.textContent = "Player 2 Wins!";
 } else {
     heading.textContent = "Draw!";
 }
