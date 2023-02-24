@@ -13,7 +13,7 @@ app.get("/contact", function (req, res) {
 });
 
 app.get("/about", function (req, res) {
-    res.send("<p>I am Ashutosh and I love beer!</p>");
+    res.send("<h3>I am Ashutosh and I love beer!</h3>");
 });
 
 app.listen(3000, function () {
