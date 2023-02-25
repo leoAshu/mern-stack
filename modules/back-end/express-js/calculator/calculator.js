@@ -24,8 +24,8 @@ app.get("/bmi-calculator", function (req, res) {
 });
 
 app.post("/bmi-calculator", function (req, res) {
-    var height = Number(req.body.height);
-    var weight = Number(req.body.weight);
+    var height = req.body.height;
+    var weight = req.body.weight;
 
     var bmi = (weight / (height * height)).toFixed(2);
 
