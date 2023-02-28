@@ -1,8 +1,5 @@
 //jshint version:6
 
-// 09dd9ff381005e3b324f253dd790f888
-// https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid={API key}
-
 const express = require("express");
 const https = require("https");
 
@@ -19,7 +16,9 @@ app.get("/", function (req, res) {
             const temperature = weatherData.main.temp;
             const weatherDescription = weatherData.weather[0].description;
             const icon = weatherData.weather[0].icon;
+
             const iconURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+            
             res.write("<p>The weather is currently " + weatherDescription + "</p>");
             res.write("<h1>The temperature in San Jose is " + temperature + " degrees Celsius.</h1>");
             res.write("<img src=" + iconURL + ">");
