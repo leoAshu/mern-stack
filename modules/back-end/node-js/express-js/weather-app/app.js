@@ -18,8 +18,6 @@ app.post("/", function (req, res) {
     const url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&units=" + units + "&appid=" + apiKey;
 
     https.get(url, function (response) {
-        console.log("statusCode:", response.statusCode);
-
         response.on("data", function (data) {
             const weatherData = JSON.parse(data);
             const temperature = weatherData.main.temp;
