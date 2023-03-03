@@ -16,7 +16,7 @@ let items = [
 
 app.get('/', (req, res) => {
     res.render('list', {
-        day: date.today,
+        day: date.today(),
         items: items
     });
 });

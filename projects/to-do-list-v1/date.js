@@ -4,4 +4,4 @@ const dateOptions = {
     month: 'long'
 };
 
-exports.today = new Date().toLocaleDateString('en-US',  dateOptions);
+exports.today = () => new Date().toLocaleDateString('en-US',  dateOptions);
