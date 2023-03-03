@@ -6,7 +6,7 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(parser.urlencoded({extended: true}));
 
-var items = [
+let items = [
     'Buy Food',
     'Cook Food',
     'Eat Food'
