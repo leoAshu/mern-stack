@@ -8,7 +8,7 @@ app.set('view engine', 'ejs');
 app.use(parser.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
-let items = [
+const items = [
     'Buy Food',
     'Cook Food',
     'Eat Food'
