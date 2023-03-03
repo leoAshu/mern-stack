@@ -2,34 +2,33 @@ const express = require('express');
 const parser = require('body-parser');
 
 const app = express();
-app.use(parser.urlencoded({extended: true}));
 
 app.set('view engine', 'ejs');
+app.use(parser.urlencoded({extended: true}));
+
+var items = [
+    'Buy Food',
+    'Cook Food',
+    'Eat Food'
+];
 
 app.get('/', (req, res) => {
-    var today = new Date();
-    var currentDay = today.getDay();
-    var day = '';
+    const dateOptions = {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long'
+    };
+    const day = new Date().toLocaleDateString('en-US',  dateOptions);
 
-    switch(currentDay) {
-        case 0: day = 'Sunday';
-        break;
-        case 1: day = 'Monday';
-        break;
-        case 2: day = 'Tuesday';
-        break;
-        case 3: day = 'Wednesday';
-        break;
-        case 4: day = 'Thursday';
-        break;
-        case 5: day = 'Friday';
-        break;
-        case 6: day = 'Saturday';
-        break;
-        default: console.log(`Error: current day is equal to ${currentDay}`);
-    }
-    
-    res.render('list', {day: day});
+    res.render('list', {
+        day: day,
+        items: items
+    });
+});
+
+app.post('/', (req, res) => {
+    items.push(req.body.newItem);
+    res.redirect('/');
 });
 
 app.listen(3000, () => {
