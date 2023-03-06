@@ -22,7 +22,7 @@ const fruits_collection_name = 'fruit';
 const fruit_schema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: [true, 'Please check your data entry, no name specified!']
     },
     rating: {
         type: Number,
