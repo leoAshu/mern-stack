@@ -11,9 +11,24 @@ const db_name = 'fruitsDB';
 // automatically converted to plural
 const fruits_collection_name = 'fruit';
 // fruit schema
+// validation rules
+// const fruit_schema = new mongoose.Schema({
+//     name: String,
+//     rating: Number,
+//     review: String
+// });
+
+// fruit schema with validation rules
 const fruit_schema = new mongoose.Schema({
-    name: String,
-    rating: Number,
+    name: {
+        type: String,
+        required: true
+    },
+    rating: {
+        type: Number,
+        min: 1,
+        max: 10
+    },
     review: String
 });
 // fruit model
