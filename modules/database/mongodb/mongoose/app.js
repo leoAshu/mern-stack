@@ -31,7 +31,25 @@ const fruit = new Fruit({
     review: 'Pretty solid as a fruit.'
 });
 
-fruit.save().then(async () => {
+// fruit.save().then(async () => {
+//     console.log('saved document to collection');
+//     await mongoose.disconnect();
+//     console.log('db disconnected');
+// });
+
+const person_schema = mongoose.Schema({
+    name: String,
+    age: Number
+});
+
+const Person = mongoose.model('person', person_schema);
+
+const person = new Person({
+    name: 'John',
+    age: 37
+});
+
+person.save().then(async () => {
     console.log('saved document to collection');
     await mongoose.disconnect();
     console.log('db disconnected');
