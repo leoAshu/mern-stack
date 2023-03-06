@@ -38,9 +38,16 @@ const Fruit = mongoose.model(fruits_collection_name, fruit_schema);
 //collection name
 const people_collection_name = 'person';
 // person schema
+// const person_schema = mongoose.Schema({
+//     name: String,
+//     age: Number
+// });
+
+// person schema with relationship to another schema
 const person_schema = mongoose.Schema({
     name: String,
-    age: Number
+    age: Number,
+    favouriteFruit: fruit_schema
 });
 // person model
 const Person = mongoose.model(people_collection_name, person_schema);
@@ -81,6 +88,23 @@ async function find_people() {
     console.log(people);
 }
 
+async function embed_and_save() {
+    const pineapple = new Fruit({
+        name: 'Pineapple',
+        rating: 9,
+        review: 'Great fruit.'
+    });
+    await pineapple.save();
+
+    const person = new Person({
+        name: 'Amy',
+        age: 12,
+        favouriteFruit: pineapple
+    });
+    await person.save();
+    console.log('saved embedded document to db');
+}
+
 async function main() {
     try {
         await mongoose.connect(url + '/' + db_name);
@@ -90,6 +114,10 @@ async function main() {
         // await save_fruit('Apple', 7, 'Pretty solid as a fruit.');
         await find_fruits();
         
+        // embedded or related schema
+        // fruit schema inside person schema
+        await embed_and_save();
+
         // people collection
         // await save_person('Mary', 25);
         await find_people();
