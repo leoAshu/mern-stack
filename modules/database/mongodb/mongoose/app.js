@@ -43,6 +43,12 @@ async function save_fruit(name, rating, review) {
     console.log(`saved fruit to db`);
 }
 
+// find fruits
+async function find_fruits() {
+    const fruits = await Fruit.find();
+    console.log(fruits);
+}
+
 
 // function to save a person document to people collection
 async function save_person(name, age) {
@@ -54,15 +60,24 @@ async function save_person(name, age) {
     await person.save();
     console.log(`saved person to db`);
 }
+// find people
+async function find_people() {
+    const people = await Person.find();
+    console.log(people);
+}
 
 async function main() {
     try {
         await mongoose.connect(url + '/' + db_name);
         console.log(`connected to ${db_name}`);
 
+        // fruits collection
         // await save_fruit('Apple', 7, 'Pretty solid as a fruit.');
+        await find_fruits();
         
-        await save_person('Mary', 25);
+        // people collection
+        // await save_person('Mary', 25);
+        await find_people();
         
     } catch(err) {
         console.log(err);
