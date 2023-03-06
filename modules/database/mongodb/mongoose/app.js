@@ -88,6 +88,8 @@ async function find_people() {
     console.log(people);
 }
 
+// create fruit and person schema relationship
+// save the embedded document to person collection
 async function embed_and_save() {
     const pineapple = new Fruit({
         name: 'Pineapple',
@@ -125,6 +127,7 @@ async function main() {
     } catch(err) {
         console.log(err);
     } finally {
+        // close connection
         await mongoose.disconnect();
         console.log('db disconnected');
     }; 
