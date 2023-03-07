@@ -12,7 +12,7 @@ app.use(express.static('./public'));
 mongoose.connect('mongodb://127.0.0.1:27017/todolistDB');
 
 // item schema object
-const item_schema ={
+const item_schema = {
   name: String
 };
 // item model object
@@ -29,6 +29,14 @@ const item3 = new Item({
   name: '<-- Hit this to delete an item.'
 });
 const default_items = [item1, item2, item3];
+
+// custom list schema
+const list_schema = {
+  name: String,
+  items: [item_schema]
+};
+// custom list model
+const List = mongoose.model('List', list_schema);
 
 app.get('/', (req, res) => {
   // fetch items from db
@@ -50,6 +58,30 @@ app.get('/', (req, res) => {
   }).catch((err) => {
     console.log(err);
     res.render('list', {day: 'Today', items: []});
+  });
+
+});
+
+app.get('/:customListName', (req, res) => {
+  const custom_list_name = req.params.customListName;
+
+  const custom_list = new List({
+    name: custom_list_name,
+    items: default_items
+  });
+
+  List.findOne({name: custom_list_name})
+  .then((list) => {
+
+    if(!list) {
+      custom_list.save();
+      res.redirect(`/${custom_list_name}`);
+    } else {
+      res.render('list', {day: custom_list_name, items: list.items});
+    }
+  }).catch((err) => {
+    console.log(err);
+    res.render('list', {day: custom_list_name, items: []});
   });
 
 });
