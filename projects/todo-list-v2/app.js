@@ -18,49 +18,38 @@ const item_schema ={
 // item model object
 const Item = mongoose.model('Item', item_schema);
 
-async function insert_default_items_if_db_empty() {
-
-  try {
-    const items = await Item.find({});
-
-    if(items.length === 0) {
-      // default items
-      const item1 = new Item({
-        name: 'Welcome to your Todo List!'
-      });
-      const item2 = new Item({
-        name: 'Hit the + button to add a new item.'
-      });
-      const item3 = new Item({
-        name: '<-- Hit this to delete an item.'
-      });
-      const default_items = [item1, item2, item3];
-
-      // inserts default items
-      await Item.insertMany(default_items)
-      console.log('Successfully saved default items to DB.');
-    }
-  } catch(err) {
-    console.log(err);
-  }
-  
-}
-// inserts default items if no items in db
-insert_default_items_if_db_empty();
+// default items
+const item1 = new Item({
+  name: 'Welcome to your Todo List!'
+});
+const item2 = new Item({
+  name: 'Hit the + button to add a new item.'
+});
+const item3 = new Item({
+  name: '<-- Hit this to delete an item.'
+});
+const default_items = [item1, item2, item3];
 
 app.get('/', (req, res) => {
-
   // fetch items from db
   Item.find({})
   .then((items) => {
 
-    res.render('list', {day: 'Today', items: items});
-
+    if(items.length === 0) {
+      Item.insertMany(default_items)
+      .then(() => {
+        console.log('Successfully saved default items to DB.')
+      }).catch((err) => {
+        console.log(err);
+      }).finally(() => {
+        res.redirect('/');
+      });
+    } else {
+      res.render('list', {day: 'Today', items: items});
+    }
   }).catch((err) => {
-
     console.log(err);
     res.render('list', {day: 'Today', items: []});
-    
   });
 
 });
