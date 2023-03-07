@@ -55,7 +55,12 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-    items.push(req.body.newItem);
+    const new_item = new Item({
+      name: req.body.newItem
+    });
+
+    new_item.save();
+    
     res.redirect('/');
 });
 
