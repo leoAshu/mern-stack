@@ -46,10 +46,6 @@ app.get('/', (req, res) => {
     if(items.length === 0) {
       Item.insertMany(default_items)
       .then(() => {
-        console.log('Successfully saved default items to DB.')
-      }).catch((err) => {
-        console.log(err);
-      }).finally(() => {
         res.redirect('/');
       });
     } else {
@@ -91,7 +87,6 @@ app.get('/:customListName', (req, res) => {
 app.post('/', (req, res) => {
   const item_name = req.body.new_item;
   const list_name = req.body.list_name;
-  console.log(list_name);
 
   const new_item = new Item({
     name: item_name
