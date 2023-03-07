@@ -8,6 +8,7 @@ app.set('view engine', 'ejs');
 app.use(parser.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
+// connect to db
 mongoose.connect('mongodb://127.0.0.1:27017/todolistDB');
 
 // item schema object
@@ -17,16 +18,51 @@ const item_schema ={
 // item model object
 const Item = mongoose.model('Item', item_schema);
 
+async function insert_default_items_if_db_empty() {
+
+  try {
+    const items = await Item.find({});
+
+    if(items.length === 0) {
+      // default items
+      const item1 = new Item({
+        name: 'Welcome to your Todo List!'
+      });
+      const item2 = new Item({
+        name: 'Hit the + button to add a new item.'
+      });
+      const item3 = new Item({
+        name: '<-- Hit this to delete an item.'
+      });
+      const default_items = [item1, item2, item3];
+
+      // inserts default items
+      await Item.insertMany(default_items)
+      console.log('Successfully saved default items to DB.');
+    }
+  } catch(err) {
+    console.log(err);
+  }
+  
+}
+// inserts default items if no items in db
+insert_default_items_if_db_empty();
+
 app.get('/', (req, res) => {
 
   // fetch items from db
-  Item.find()
+  Item.find({})
   .then((items) => {
-    console.log(items);
+
     res.render('list', {day: 'Today', items: items});
+
   }).catch((err) => {
+
     console.log(err);
+    res.render('list', {day: 'Today', items: []});
+    
   });
+
 });
 
 app.post('/', (req, res) => {
