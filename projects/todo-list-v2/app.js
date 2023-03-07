@@ -53,11 +53,11 @@ app.get('/', (req, res) => {
         res.redirect('/');
       });
     } else {
-      res.render('list', {day: 'Today', items: items});
+      res.render('list', {title:'Today', items: items});
     }
   }).catch((err) => {
     console.log(err);
-    res.render('list', {day: 'Today', items: []});
+    res.render('list', {title:'Today', items: []});
   });
 
 });
@@ -77,11 +77,11 @@ app.get('/:customListName', (req, res) => {
       custom_list.save();
       res.redirect(`/${custom_list_name}`);
     } else {
-      res.render('list', {day: custom_list_name, items: list.items});
+      res.render('list', {title:custom_list_name, items: list.items});
     }
   }).catch((err) => {
     console.log(err);
-    res.render('list', {day: custom_list_name, items: []});
+    res.render('list', {title:custom_list_name, items: []});
   });
 
 });
