@@ -8,23 +8,25 @@ app.set('view engine', 'ejs');
 app.use(parser.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
-mongoose.connect('mongodb://localhost:27017/todolistDB');
+mongoose.connect('mongodb://127.0.0.1:27017/todolistDB');
 
 // item schema object
-const item_schema = mongoose.Schema({
+const item_schema ={
   name: String
-});
+};
 // item model object
 const Item = mongoose.model('Item', item_schema);
 
-const items = [];
-
 app.get('/', (req, res) => {
-    res.render('list', {
-        // day: date.today(),
-        day: 'Today',
-        items: items
-    });
+
+  // fetch items from db
+  Item.find()
+  .then((items) => {
+    console.log(items);
+    res.render('list', {day: 'Today', items: items});
+  }).catch((err) => {
+    console.log(err);
+  });
 });
 
 app.post('/', (req, res) => {
