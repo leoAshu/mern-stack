@@ -64,6 +64,17 @@ app.post('/', (req, res) => {
     res.redirect('/');
 });
 
+app.post('/delete', (req, res) => {
+  Item.findByIdAndRemove(req.body.item_id)
+  .then(() => {
+    console.log('Successfully deleted item from DB.');
+  }).catch((err) => {
+    console.log(err);
+  }).finally(() => {
+    res.redirect('/');
+  });
+});
+
 app.listen(3000, () => {
-    console.log('server is listening at port 3000');
+    console.log('Server is listening at port 3000.');
 });
