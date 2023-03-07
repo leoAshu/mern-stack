@@ -1,6 +1,7 @@
 const express = require('express');
 const parser = require('body-parser');
 const mongoose = require('mongoose');
+const _ = require('lodash');
 
 const app = express();
 
@@ -59,7 +60,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/:customListName', (req, res) => {
-  const custom_list_name = req.params.customListName;
+  const custom_list_name = _.capitalize(req.params.customListName);
 
   const custom_list = new List({
     name: custom_list_name,
