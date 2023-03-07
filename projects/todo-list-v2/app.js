@@ -74,8 +74,10 @@ app.get('/:customListName', (req, res) => {
   .then((list) => {
 
     if(!list) {
-      custom_list.save();
-      res.redirect(`/${custom_list_name}`);
+      custom_list.save()
+      .then(() => {
+        res.redirect(`/${custom_list_name}`);
+      });
     } else {
       res.render('list', {title:custom_list_name, items: list.items});
     }
@@ -87,13 +89,29 @@ app.get('/:customListName', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-    const new_item = new Item({
-      name: req.body.newItem
-    });
+  const item_name = req.body.newItem;
+  const list_name = req.body.list;
 
-    new_item.save();
-    
-    res.redirect('/');
+  const new_item = new Item({
+    name: item_name
+  });
+
+  if(list_name === 'Today') {
+    new_item.save().then(() => {
+      res.redirect('/');
+    });
+  } else {
+    List.findOne({name: list_name})
+    .then((list) => {
+      list.items.push(new_item);
+      list.save();
+    }).catch((err) => {
+      console.log(err);
+    }).finally(() => {
+      res.redirect(`/${list_name}`)
+    });
+  }
+
 });
 
 app.post('/delete', (req, res) => {
