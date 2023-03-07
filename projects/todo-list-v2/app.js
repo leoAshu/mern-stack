@@ -119,14 +119,19 @@ app.post('/delete', (req, res) => {
   const item_id = req.body.item_id;
   const list_name = req.body.list_name;
 
-  Item.findByIdAndRemove(item_id)
-  .then(() => {
-    console.log('Successfully deleted item from DB.');
-  }).catch((err) => {
-    console.log(err);
-  }).finally(() => {
-    res.redirect('/');
-  });
+  if(list_name === 'Today') {
+    Item.findByIdAndRemove(item_id)
+    .then(() => {
+      res.redirect('/');
+    });
+  } else {
+    List.findOneAndUpdate(
+      {name: list_name},
+      {$pull: {items: {_id: item_id}}}
+    ).then((list) => {
+      res.redirect(`/${list_name}`);
+    });
+  }
 });
 
 app.listen(3000, () => {
