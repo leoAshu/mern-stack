@@ -89,8 +89,9 @@ app.get('/:customListName', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-  const item_name = req.body.newItem;
-  const list_name = req.body.list;
+  const item_name = req.body.new_item;
+  const list_name = req.body.list_name;
+  console.log(list_name);
 
   const new_item = new Item({
     name: item_name
@@ -115,7 +116,10 @@ app.post('/', (req, res) => {
 });
 
 app.post('/delete', (req, res) => {
-  Item.findByIdAndRemove(req.body.item_id)
+  const item_id = req.body.item_id;
+  const list_name = req.body.list_name;
+
+  Item.findByIdAndRemove(item_id)
   .then(() => {
     console.log('Successfully deleted item from DB.');
   }).catch((err) => {
