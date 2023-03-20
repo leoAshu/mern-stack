@@ -59,9 +59,9 @@ app.post('/compose', async (req, res) => {
   }
 });
 
-app.get('/posts/:postName', async (req, res) => {
+app.get('/posts/:postID', async (req, res) => {
   try {
-    const post = await Post.findOne({title: req.params.postName});
+    const post = await Post.findOne({_id: req.params.postID});
     res.render('post', {post: post});
   } catch(err) {
     console.error(err);
