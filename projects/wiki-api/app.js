@@ -47,6 +47,16 @@ app.route('/articles')
     }
 });
 
+app.route('/articles/:article_title')
+.get(async (req, res) => {
+    try {
+        const article = await Article.findOne({title: req.params.article_title});
+        res.send(article);
+    } catch(err) {
+        res.send(err);
+    }
+});
+
 app.listen(3000, () => {
     console.log('Server started on port 3000.')
 });
