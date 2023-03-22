@@ -16,16 +16,16 @@ const article_schema = {
 };
 const Article = mongoose.model('Article', article_schema);
 
-app.get('/articles', async (req, res) => {
+app.route('/articles')
+.get(async (req, res) => {
     try {
         const articles = await Article.find({});
         res.send(articles);
     } catch(err) {
         res.send(err);
     }
-});
-
-app.post('/articles', async (req, res) => {
+})
+.post(async (req, res) => {
     try {
         const article = new Article({
             title: req.body.title,
@@ -37,9 +37,8 @@ app.post('/articles', async (req, res) => {
     } catch(err) {
         res.send(err);
     }
-});
-
-app.delete('/articles', async (req, res) => {
+})
+.delete(async (req, res) => {
     try {
         await Article.deleteMany({});
         res.send('Success!');
