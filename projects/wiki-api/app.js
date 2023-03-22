@@ -16,7 +16,14 @@ const article_schema = {
 };
 const Article = mongoose.model('Article', article_schema);
 
-
+app.get('/articles', async (req, res) => {
+    try {
+        const articles = await Article.find({});
+        res.send(articles);
+    } catch(err) {
+        res.send(err);
+    }
+});
 
 app.listen(3000, () => {
     console.log('Server started on port 3000.')
