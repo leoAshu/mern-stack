@@ -66,6 +66,14 @@ app.route('/articles/:article_title')
     } catch(err) {
         res.send(err);
     }
+})
+.delete(async (req, res) => {
+    try {
+        await Article.deleteOne({title: req.params.article_title});
+        res.send('Success!');
+    } catch(err) {
+        res.send(err);
+    }
 });
 
 app.listen(3000, () => {
