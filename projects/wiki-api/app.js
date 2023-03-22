@@ -55,6 +55,17 @@ app.route('/articles/:article_title')
     } catch(err) {
         res.send(err);
     }
+})
+.put(async (req, res) => {
+    try {
+        await Article.updateOne(
+            {title: req.params.article_title},
+            {title: req.body.title, content: req.body.content},
+        );
+        res.send('Success!');
+    } catch(err) {
+        res.send(err);
+    }
 });
 
 app.listen(3000, () => {
