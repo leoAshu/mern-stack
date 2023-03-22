@@ -31,8 +31,17 @@ app.post('/articles', async (req, res) => {
             title: req.body.title,
             content: req.body.content
         });
-        
+
         await article.save();
+        res.send('Success!');
+    } catch(err) {
+        res.send(err);
+    }
+});
+
+app.delete('/articles', async (req, res) => {
+    try {
+        await Article.deleteMany({});
         res.send('Success!');
     } catch(err) {
         res.send(err);
