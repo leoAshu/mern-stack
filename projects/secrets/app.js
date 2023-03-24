@@ -3,7 +3,9 @@ const express = require('express');
 const parser = require('body-parser');
 const mongoose = require('mongoose');
 // const encrypt = require('mongoose-encryption'); // level 2
-const md5 = require('md5'); // level 3
+// const md5 = require('md5'); // level 3
+const bcrypt = require('bcrypt');
+const salt_rounds = 10;
 
 const app = express();
 
@@ -43,7 +45,8 @@ app.post('/register', async (req, res) => {
     try {
         const user = new User({
             email: req.body.username,
-            password: md5(req.body.password)
+            // password: md5(req.body.password) // level 3
+            password: await bcrypt.hash(req.body.password, salt_rounds)
         });
     
         await user.save();
@@ -57,7 +60,11 @@ app.post('/login', async (req, res) => {
     try {
         const user = await User.findOne({email: req.body.username});
         if(user) {
-            if(user.password == md5(req.body.password)) {
+            // level 3
+            // if(user.password == md5(req.body.password)) {
+            //     res.render('secrets');
+            // }
+            if(await bcrypt.compare(req.body.password, user.password)) {
                 res.render('secrets');
             }
         }
