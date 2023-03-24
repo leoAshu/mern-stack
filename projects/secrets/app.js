@@ -70,6 +70,7 @@ app.get('/register', (req, res) => {
     res.render('register');
 });
 
+// level 5
 app.get('/secrets', (req, res) => {
     if(req.isAuthenticated()) {
         res.render('secrets');
@@ -78,6 +79,7 @@ app.get('/secrets', (req, res) => {
     }
 });
 
+// level 5
 app.get('/logout', (req, res) => {
     req.logout((err) => {
         if(err) {
