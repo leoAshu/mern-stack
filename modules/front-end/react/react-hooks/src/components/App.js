@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 function App() {
-    let count = 0;
+    const [count, setCount] = useState(0);
 
     function increment() {
-        count++;
+        setCount(count+1);
     }
+
     return (
         <div className="container">
             <h1>{count}</h1>
