@@ -1,13 +1,11 @@
 import React from 'react';
 
-let count = 0;
-
-function increment() {
-  count++;
-  console.log(count);
-}
-
 function App() {
+    let count = 0;
+
+    function increment() {
+        count++;
+    }
     return (
         <div className="container">
             <h1>{count}</h1>
