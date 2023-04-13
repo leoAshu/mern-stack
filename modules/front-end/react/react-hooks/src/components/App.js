@@ -12,7 +12,7 @@ function App() {
     }
 
     return (
-        <div className="container">
+        <div className='container'>
             <h1>{count}</h1>
             <button onClick={increment}>+</button>
             <button onClick={decrement}>-</button>
