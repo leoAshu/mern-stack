@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function CreateArea() {
+function CreateArea(props) {
     const [note, setNote] = useState({title: '', content: ''});
 
     function handleChange(event) {
@@ -15,7 +15,11 @@ function CreateArea() {
 
     return (
         <div>
-            <form>
+            <form onSubmit={(event) => {
+                props.onAdd(note);
+                setNote({title: '', content: ''});
+                event.preventDefault();
+            }}>
             <input 
                 onChange={handleChange} 
                 name='title' 
