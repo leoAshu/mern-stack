@@ -4,11 +4,11 @@ function App() {
   const [fName, setFName] = useState('');
   const [lName, setLName] = useState('');
 
-  function onChangeFName(event) {
+  function updateFName(event) {
     setFName(event.target.value);
   }
 
-  function onChangeLName(event) {
+  function updateLName(event) {
     setLName(event.target.value);
   }
 
@@ -18,8 +18,8 @@ function App() {
         Hello {fName} {lName}
       </h1>
       <form>
-        <input onChange={onChangeFName} name='fName' placeholder='First Name' value={fName}/>
-        <input onChange={onChangeLName} name='lName' placeholder='Last Name' value={lName}/>
+        <input onChange={updateFName} name='fName' placeholder='First Name' value={fName}/>
+        <input onChange={updateLName} name='lName' placeholder='Last Name' value={lName}/>
         <button>Submit</button>
       </form>
     </div>
