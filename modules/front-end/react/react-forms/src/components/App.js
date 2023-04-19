@@ -2,21 +2,29 @@ import React, {useState} from 'react';
 
 function App() {
   const [name, setName] = useState('');
+  const [value, setValue] = useState('');
 
-  function onChange(event) {
-    setName(event.target.value);
+  function handleChange(event) {
+    setValue(event.target.value);
+  }
+
+  function handleClick(event) {
+    setName(value);
+    event.preventDefault();
   }
 
   return (
     <div className='container'>
       <h1>Hello {name}</h1>
-      <input 
-        onChange={onChange} 
-        type='text' 
-        placeholder="What's your name?" 
-        value={name}
-      />
-      <button>Submit</button>
+      <form onSubmit={handleClick}>
+        <input 
+          onChange={handleChange}
+          type='text' 
+          placeholder="What's your name?" 
+          value={value}
+        />
+        <button type='submit'>Submit</button>
+      </form>
     </div>
   );
 }
