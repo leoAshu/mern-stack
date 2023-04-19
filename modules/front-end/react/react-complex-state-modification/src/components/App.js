@@ -11,17 +11,10 @@ function App() {
     const { value, name: eventName } = event.target;
     
     setName(prevName => {
-      if (eventName === 'fName') {
-        return {
-          fName: value,
-          lName: prevName.lName
-        };
-      } else {
-        return {
-          fName: prevName.fName,
-          lName: value
-        };
-      }
+      return {
+        ...prevName,
+        [eventName]: value
+      };
     });
   }
 
